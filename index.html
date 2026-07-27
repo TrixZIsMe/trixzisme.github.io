@@ -7,7 +7,7 @@
 <meta name="description" content="Tristan Graves — artist, engineer, founder. Perception LLC." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <!-- ============================================================= -->
 <!--  EDIT EVERYTHING IN THE CONFIG BLOCK AT THE BOTTOM OF THIS    -->
@@ -17,15 +17,15 @@
 
 <style>
   :root {
-    --bg:        #08070F;
-    --bg-raise:  #100E20;
-    --text:      #ECEAF6;
-    --muted:     #8E89A8;
-    --border:    rgba(255,255,255,0.08);
-    --border-hi: rgba(185,174,255,0.45);
-    --accent:    #B9AEFF;
-    --glow-violet: #6D5BF0;
-    --glow-rose:   #E879A6;
+    --bg:         #060407;
+    --text:       #F2EFF3;
+    --muted:      #8E8794;
+    --border:     rgba(255,255,255,0.09);
+    --border-hi:  rgba(255,46,76,0.55);
+    --accent:     #FF2E4C;
+    --accent-dim: rgba(255,46,76,0.12);
+    --glow-red:   #C4102E;
+    --glow-violet:#5A2BB8;
     --maxw: 520px;
   }
 
@@ -48,86 +48,112 @@
     overflow-x: hidden;
   }
 
-  /* ---- signature: drifting nocturnal aurora ---- */
-  .aurora { position: fixed; inset: -20% -20% -20% -20%; z-index: 0; pointer-events: none; filter: blur(90px); opacity: 0.55; }
+  /* ---- signature: smoke + blood aurora ---- */
+  .aurora { position: fixed; inset: -20%; z-index: 0; pointer-events: none; filter: blur(90px); opacity: 0.6; }
   .aurora span { position: absolute; border-radius: 50%; }
   .aurora .v {
-    width: 60vmax; height: 60vmax; top: -18vmax; left: -10vmax;
-    background: radial-gradient(circle at center, var(--glow-violet), transparent 62%);
-    animation: drift1 26s ease-in-out infinite alternate;
+    width: 62vmax; height: 62vmax; top: -20vmax; left: -12vmax;
+    background: radial-gradient(circle at center, var(--glow-red), transparent 60%);
+    animation: drift1 24s ease-in-out infinite alternate;
   }
   .aurora .r {
-    width: 48vmax; height: 48vmax; bottom: -16vmax; right: -8vmax;
-    background: radial-gradient(circle at center, var(--glow-rose), transparent 64%);
-    animation: drift2 32s ease-in-out infinite alternate;
+    width: 50vmax; height: 50vmax; bottom: -18vmax; right: -10vmax;
+    background: radial-gradient(circle at center, var(--glow-violet), transparent 62%);
+    animation: drift2 30s ease-in-out infinite alternate;
   }
-  @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(8vmax, 6vmax) scale(1.12); } }
-  @keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-7vmax,-5vmax) scale(1.15); } }
+  @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(9vmax, 7vmax) scale(1.15); } }
+  @keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-8vmax,-6vmax) scale(1.18); } }
 
-  /* grain / vignette to keep it premium, not flat */
+  /* grain + vignette — keeps it gritty, not flat */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
   body::after {
     content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none;
-    background: radial-gradient(120% 90% at 50% 0%, transparent 40%, rgba(0,0,0,0.55) 100%);
+    background: radial-gradient(120% 90% at 50% 0%, transparent 35%, rgba(0,0,0,0.72) 100%);
   }
 
   .wrap { position: relative; z-index: 2; width: 100%; max-width: var(--maxw); text-align: center; }
 
   /* ---- avatar ---- */
   .avatar {
-    width: 104px; height: 104px; border-radius: 50%; margin: 0 auto 26px;
+    width: 112px; height: 112px; border-radius: 50%; margin: 0 auto 24px;
     display: grid; place-items: center; position: relative;
-    background: linear-gradient(140deg, #2a2550, #15122e);
-    box-shadow: 0 0 0 1px var(--border), 0 0 44px -8px var(--glow-violet);
+    background: linear-gradient(140deg, #2b0a12, #140510);
+    box-shadow: 0 0 0 1px var(--border), 0 0 0 3px rgba(255,46,76,0.18), 0 0 56px -6px var(--glow-red);
     overflow: hidden;
   }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05) contrast(1.05); }
   .avatar .mono {
-    font-family: "Instrument Serif", serif; font-size: 40px; letter-spacing: 1px;
+    font-family: "Bebas Neue", sans-serif; font-size: 44px; letter-spacing: 2px;
     color: var(--text); opacity: 0.9;
   }
 
   /* ---- header ---- */
   h1 {
-    font-family: "Instrument Serif", serif; font-weight: 400;
-    font-size: clamp(46px, 12vw, 64px); line-height: 0.96; letter-spacing: 0.5px;
+    font-family: "Bebas Neue", "Space Grotesk", sans-serif; font-weight: 400;
+    font-size: clamp(60px, 16vw, 88px); line-height: 0.92; letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #FFFFFF 0%, #D9D6DE 38%, #6E6878 52%, #E8E4EC 62%, #9A93A4 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    filter: drop-shadow(0 4px 26px rgba(255,46,76,0.35));
   }
   .roles {
-    margin-top: 14px; font-size: 12px; font-weight: 500;
-    letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent);
+    margin-top: 12px; font-size: 12.5px; font-weight: 600;
+    letter-spacing: 0.42em; text-transform: uppercase; color: var(--accent);
+    text-shadow: 0 0 18px rgba(255,46,76,0.65);
+    animation: flicker 7s infinite;
+  }
+  @keyframes flicker {
+    0%, 91%, 95%, 100% { opacity: 1; }
+    92% { opacity: 0.45; }
+    93% { opacity: 0.9; }
+    94% { opacity: 0.5; }
   }
   .bio {
-    margin: 22px auto 0; max-width: 420px; font-size: 15px; line-height: 1.6;
+    margin: 20px auto 0; max-width: 430px; font-size: 15px; line-height: 1.6;
     color: var(--muted);
   }
-  .bio em { font-family: "Instrument Serif", serif; font-style: italic; color: var(--text); font-size: 1.12em; }
+  .bio em { font-family: "Instrument Serif", serif; font-style: italic; color: var(--text); font-size: 1.14em; }
 
   /* ---- link rows ---- */
-  .links { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
+  .links { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
   .row {
     display: flex; align-items: center; gap: 15px; text-align: left;
-    padding: 15px 17px; border-radius: 16px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+    padding: 15px 17px; border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
     border: 1px solid var(--border);
     color: var(--text); text-decoration: none;
+    position: relative; overflow: hidden;
     transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+  }
+  .row::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(180deg, var(--accent), transparent 130%);
+    opacity: 0; transition: opacity .22s ease;
   }
   .row:hover, .row:focus-visible {
     transform: translateY(-2px);
     border-color: var(--border-hi);
-    box-shadow: 0 12px 34px -16px var(--glow-violet);
-    background: linear-gradient(180deg, rgba(185,174,255,0.10), rgba(255,255,255,0.02));
+    box-shadow: 0 14px 40px -16px var(--glow-red);
+    background: linear-gradient(180deg, rgba(255,46,76,0.10), rgba(255,255,255,0.02));
     outline: none;
   }
+  .row:hover::before, .row:focus-visible::before { opacity: 1; }
+  .row.hot { border-color: rgba(255,46,76,0.4); }
+  .row.hot::before { opacity: 1; }
   .row .ic {
-    flex: 0 0 auto; width: 42px; height: 42px; border-radius: 12px;
+    flex: 0 0 auto; width: 42px; height: 42px; border-radius: 11px;
     display: grid; place-items: center;
-    background: rgba(185,174,255,0.10); border: 1px solid var(--border);
+    background: var(--accent-dim); border: 1px solid rgba(255,46,76,0.28);
     color: var(--accent);
   }
   .row .ic svg { width: 20px; height: 20px; }
   .row .txt { flex: 1 1 auto; min-width: 0; }
-  .row .label { display: block; font-size: 15.5px; font-weight: 600; letter-spacing: 0.1px; }
-  .row .sub { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }
+  .row .label { display: block; font-size: 15.5px; font-weight: 600; letter-spacing: 0.2px; }
+  .row .sub { display: block; margin-top: 2px; font-size: 11.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
   .row .arrow { flex: 0 0 auto; color: var(--muted); transition: transform .22s ease, color .22s ease; }
   .row:hover .arrow, .row:focus-visible .arrow { transform: translateX(4px); color: var(--accent); }
 
@@ -138,19 +164,21 @@
     display: grid; place-items: center;
     background: rgba(255,255,255,0.04); border: 1px solid var(--border);
     color: var(--muted);
-    transition: transform .2s ease, color .2s ease, border-color .2s ease, background .2s ease;
+    transition: transform .2s ease, color .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
   }
   .socials a:hover, .socials a:focus-visible {
     transform: translateY(-3px); color: var(--text);
-    border-color: var(--border-hi); background: rgba(185,174,255,0.10);
+    border-color: var(--border-hi); background: var(--accent-dim);
+    box-shadow: 0 8px 26px -10px var(--glow-red);
     outline: none;
   }
   .socials svg { width: 19px; height: 19px; fill: currentColor; }
 
-  footer { margin-top: 38px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(142,137,168,0.6); }
+  footer { margin-top: 38px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(142,135,148,0.55); }
 
   @media (prefers-reduced-motion: reduce) {
     .aurora .v, .aurora .r { animation: none; }
+    .roles { animation: none; }
     .row, .row .arrow, .socials a { transition: none; }
   }
 </style>
@@ -171,10 +199,10 @@
   </main>
 
 <script>
-/* ================================================================ */
+/* ================================================================== */
 /*  >>> CONFIG — EDIT THIS BLOCK ONLY <<<                            */
 /*  Replace every "#" with your real link. Save. Done.              */
-/* ================================================================ */
+/* ================================================================== */
 const CONFIG = {
   name: "Tristan Graves",
   roles: "artist · engineer · founder",
@@ -186,17 +214,17 @@ const CONFIG = {
   // Your short bio. The <em>...</em> word renders in the serif accent.
   bio: "Baton Rouge artist, audio engineer, and founder of <em>Perception LLC</em>. I make the music, shoot the visuals, and build the platforms around them. Pick a lane below.",
 
-  // Link rows — music first for the rollout. Swap/add rows any time.
+  // Link rows — music first for the rollout. hot: true = always lit.
   links: [
-    { label: "SHOUTOUT TO MY EX &lt;/3",  sub: "the new single · out now",            url: "https://unitedmasters.com/m/shoutout-to-my-ex-3",              icon: "spark"  },
-    { label: "Spotify",                sub: "stream Tris3x",                        url: "https://open.spotify.com/artist/1ZuFx9csZDcL4t1WYDuXjq",       icon: "play"   },
-    { label: "Apple Music",            sub: "stream Tris3x",                        url: "https://music.apple.com/album/6792184792",                      icon: "music"  },
-    { label: "UnitedMasters",          sub: "full catalog · every release",         url: "https://unitedmasters.com/a/tris3x",                            icon: "disc"   },
+    { label: "SHOUTOUT TO MY EX &lt;/3",  sub: "the new single · out now",     url: "https://unitedmasters.com/m/shoutout-to-my-ex-3",         icon: "bolt",  hot: true },
+    { label: "Spotify",                sub: "stream Tris3x",                url: "https://open.spotify.com/artist/1ZuFx9csZDcL4t1WYDuXjq",  icon: "play"  },
+    { label: "Apple Music",            sub: "stream Tris3x",                url: "https://music.apple.com/album/6792184792",                 icon: "music" },
+    { label: "UnitedMasters",          sub: "full catalog · every release", url: "https://unitedmasters.com/a/tris3x",                       icon: "disc"  },
   ],
 
   // Social icons — drop your profile URLs in.
   socials: [
-    { name: "Instagram", url: "#", icon: "instagram" },
+    { name: "Instagram", url: "https://www.instagram.com/tristan.gravez", icon: "instagram" },
     { name: "TikTok",    url: "#", icon: "tiktok"    },
     { name: "X",         url: "#", icon: "x"         },
     { name: "Snapchat",  url: "#", icon: "snapchat"  },
@@ -204,14 +232,14 @@ const CONFIG = {
 
   footer: "© 2026 Perception LLC",
 };
-/* ================================================================= */
+/* ================================================================== */
 /*  >>> STOP EDITING HERE <<<                                        */
-/* ================================================================= */
+/* ================================================================== */
 
 const ICONS = {
   // link-row icons (stroke style)
   music:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
-  camera: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3.2"/></svg>',
+  bolt:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5h6L11 22l8.5-11.5h-6z"/></svg>',
   spark:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.2 5.4 5.8.4-4.5 3.7 1.5 5.6L12 20l-5 .1 1.5-5.6L4 8.7l5.8-.4z"/></svg>',
   arrow:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   play:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>',
@@ -252,7 +280,7 @@ const ICONS = {
 
   // link rows
   $("links").innerHTML = CONFIG.links.map(l => (
-    '<a class="row" href="' + l.url + '" target="_blank" rel="noopener">' +
+    '<a class="row' + (l.hot ? ' hot' : '') + '" href="' + l.url + '" target="_blank" rel="noopener">' +
       '<span class="ic">' + (ICONS[l.icon] || ICONS.spark) + '</span>' +
       '<span class="txt"><span class="label">' + l.label + '</span>' +
       '<span class="sub">' + l.sub + '</span></span>' +
